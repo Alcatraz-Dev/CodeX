@@ -6,7 +6,7 @@ import { Configuration, OpenAIApi } from "openai";
 dotenv.config();
 
 const configuration = new Configuration({
-  apiKey: process.env.OPEN_AI_API_KEY,
+  apiKey: process.env.OPENAI_API_KEY,
 });
 
 const openai = new OpenAIApi(configuration);
@@ -27,7 +27,7 @@ app.post("/", async (req, res) => {
 
     const response = await openai.createCompletion({
       model: "text-davinci-003",
-      prompt: `${prompt}`,
+      prompt: `${prompt}"Correct this to standard English:\n\nShe no went to the market."`,
       temperature: 0, // Higher values means the model will take more risks.
       max_tokens: 3000, // The maximum number of tokens to generate in the completion. Most models have a context length of 2048 tokens (except for the newest models, which support 4096).
       top_p: 1, // alternative to sampling with temperature, called nucleus sampling
